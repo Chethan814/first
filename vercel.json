@@ -1,4 +1,5 @@
 {
+  "buildCommand": "sh build_files.sh",
   "routes": [
     {
       "src": "/(.*)",
