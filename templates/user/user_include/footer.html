@@ -1,0 +1,132 @@
+{% extends 'user\user_include\include_base.html' %}
+
+
+{% load static tailwind_tags %}
+{% load static %}
+
+
+{% block links %}
+
+
+
+{% tailwind_css %}
+
+{% endblock %}
+
+{% block content %}
+<hr class="my-[2rem]">
+<footer id="footer">
+    <div class="footer-content hidden sm:block sm:w-[90vw] mx-auto mt-[3rem]">
+        <div class="sm:flex sm:justify-around sm:items-center">
+            <div class="footer-section about sm:w-[40vw] sm:h-[12rem]">
+                <h2 class="text-[1.5rem] mb-3 font-normal">About ShiftRides</h2>
+                <p>ShiftRides is your go-to platform for hassle-free car rentals, offering a diverse fleet to suit
+                    your travel
+                    needs. Explore the world with confidence and convenience.</p>
+            </div>
+
+            <div class="footer-section contact sm:w-[40vw] sm:h-[12rem]">
+                <h2 class="text-[1.5rem] mb-3 font-normal">Contact Us</h2>
+                <p>Email: Chethanchethu99339@gmail.com</p>
+                <p>Phone: +91-8147064236</p>
+                <p>Address: Bangalore,India</p>
+            </div>
+            </details>
+        </div>
+        <div class="sm:flex sm:justify-around  sm:items-center my-4">
+            <div class="footer-section social sm:w-[40vw] sm:h-[12rem]">
+                <h2 class="text-[1.5rem] mb-3 font-normal">Follow Us</h2>
+                <p class="font-light ">Stay connected with us on social media for the latest updates and promotions.
+                </p>
+                <a href="https://www.linkedin.com/in/chethan-k-r-559748229/"
+                    class="fa fa-linkedin text-[1.6rem] mt-4 hover:drop-shadow-2xl hover:text-[#9960fc]"></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://github.com/Chethan814"
+                    class="fa fa-github text-[1.6rem] hover:drop-shadow-2xl hover:text-[#9960fc]"></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://twitter.com/Chethan31450"
+                    class="fa fa-twitter text-[1.6rem] hover:drop-shadow-2xl hover:text-[#9960fc]"></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.instagram.com/chethan3145/?utm_source=qr"
+                    class="fa fa-instagram text-[1.6rem] hover:drop-shadow-2xl hover:text-[#9960fc]"></a>
+                &nbsp;&nbsp;&nbsp;
+            </div>
+
+            <div class="footer-section links sm:w-[40vw] sm:h-[12rem]">
+                <h2 class="text-[1.5rem] mb-3 font-normal">Quick Link</h2>
+                <ul>
+                    <li><a href="{% url 'UserLog' %}" class="hover:text-[#9960fc]">Home</a></li>
+                    <li><a href="{% url 'user_searching' %}" class="hover:text-[#9960fc]">Cars</a></li>
+                    <li><a href="#hsw-sec" class="hover:text-[#9960fc]">How It Works</a></li>
+                    <li><a href="#" class="hover:text-[#9960fc]">FAQ</a></li>
+                    <li><a href="#" class="hover:text-[#9960fc]">Terms of Service</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-content sm:hidden ">
+
+        <div class="footer-section social my-4">
+            <h2 class="text-[1.3rem] font-normal">Follow Us</h2>
+            <p class="font-light">Stay connected with us on social media for the latest updates and promotions.</p>
+            <a href="https://www.linkedin.com/in/chethan-k-r-559748229/"
+                class="fa fa-linkedin  text-[1.2rem] hover:drop-shadow-xl hover:text-[#9960fc]"></a> &nbsp;
+            <a href="https://github.com/Chethan814"
+                class="fa fa-github  text-[1.2rem] hover:drop-shadow-xl hover:text-[#9960fc]"></a> &nbsp;
+            <a href="https://twitter.com/Chethan31450"
+                class="fa fa-twitter  text-[1.2rem] hover:drop-shadow-xl hover:text-[#9960fc]"></a> &nbsp;
+            <a href="https://www.instagram.com/chethan3145/?utm_source=qr"
+                class="fa fa-instagram  text-[1.2rem] hover:drop-shadow-xl hover:text-[#9960fc]"></a> &nbsp;
+        </div>
+
+        <div class="footer-section links my-4">
+            <h2 class="text-[1.3rem] font-normal">Quick Link</h2>
+            <ul>
+                <li><a href="{% url 'UserLog' %}" class="hover:text-[#9960fc]">Home</a></li>
+                <li><a href="{% url 'user_searching' %}" class="hover:text-[#9960fc]">Cars</a></li>
+                <li><a href="#hsw-sec" class="hover:text-[#9960fc]">How It Works</a></li>
+                <li><a href="#" class="hover:text-[#9960fc]">FAQ</a></li>
+                <li><a href="#" class="hover:text-[#9960fc]">Terms of Service</a></li>
+            </ul>
+
+        </div>
+
+        <div class="">
+            <details class="text-[1.3rem] my-8">
+                <summary>
+                    About ShiftRides
+                </summary>
+                <div class="footer-section about my-4">
+
+                    <p>ShiftRides is your go-to platform for hassle car rentals, offering a diverse fleet to
+                        suit
+                        your
+                        travel needs. Explore the world with confidence and convenience.</p>
+                </div>
+            </details>
+
+            <details class="text-[1.3rem] my-8">
+                <summary>Contact Us</summary>
+                <div class="footer-section contact my-4">
+
+                    <p>Email: Chethanchethu99339@gmail.com</p>
+                    <p>Phone: +91-8147064236</p>
+                    <p>Address: Bangalore,India</p>
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="footer-bottom my-10">
+        <p class="text-center">&copy; 2024 <span class="hover:text-[#9960fc] underline"><a href="{% url 'UserLog' %}"> ShiftRides</a></span>. All
+            rights
+            reserved. | Designed by <span class="hover:text-[#9960fc] underline"><a
+                    href="https://www.linkedin.com/in/chethan-k-r-559748229/">Chethan.K.R</a></span></p>
+    </div>
+</footer>
+{% endblock %}

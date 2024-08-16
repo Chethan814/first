@@ -1,0 +1,715 @@
+{% extends 'user/base.html' %}
+{% load static tailwind_tags %}
+{% load static %}
+
+{% tailwind_css %}
+
+
+{% block main %}
+<script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Push a new state to the history
+        history.pushState(null, null, window.location.href);
+
+        window.addEventListener('popstate', function (event) {
+            // If the back button is pressed, push the same state again
+            history.pushState(null, null, window.location.href);
+        });
+
+        // Optional: To handle the forward button as well
+        window.addEventListener('hashchange', function (event) {
+            history.pushState(null, null, window.location.href);
+        });
+    });
+</script>
+
+
+    <main>
+
+        <section id="hero">
+            <div class="searching  ">
+                <div class="form bg-white  absolute top-24 ml-4 rounded-lg w-[20rem] z-10 
+                        sm:top-[6rem] sm:max-[750px] sm:w-[90vw] sm:ml-[2rem] sm:rounded-full
+                        md:top-[7rem] 
+                        lg:w-[75vw]
+                        xl:w-[75rem]  xl:ml-[5rem] xl:translate-x-[1.5rem] xl:translate-y-[1rem]
+                        ">
+
+                    <form action="/search" method="get"
+                        class="relative m-2 sm:flex sm:text-center lg:w-[70vw] xl:w-[90vw] xl:left-[3rem] xl:top-[0.4rem]">
+
+                        <label for="address" class="absolute text-[0.9rem] sm:ml-2 md:text-[1rem]">Where</label>
+                        <input name="search" id="search" type="search" class="address w-full rounded-md border-0 pt-4  text-gray-900 focus:ring-2 focus:ring-inset focus:ring-transparent focus:border-none 
+                                                        sm:w-[10rem] sm:h-[2rem] sm:mt-3 sm:ml-2 sm:mr-0 outline-none
+                                                        md:w-[10rem] md:text-[1.1rem] 
+                                                        xl:w-[15rem] xl:h-[2.5rem]
+                                                        " placeholder="City,address or hotel"> <br>
+
+
+
+
+                        <label for="date_from"
+                            class="absolute sm:translate-x-[11.4rem] text-[0.9rem] md:text-[1rem] lg:translate-x-[11.5rem] xl:translate-x-[16.5rem]">From</label>
+                        <input type="date" name="date_from" id="date_from" class="h-8 w-[9rem] my-4 rounded-md  pt-4 text-gray-900  placeholder:text-gray-400 focus:ring-inset focus:ring-transparent focus:border-none 
+                                   border-none outline-none  p-[14px] translate-y-1
+                                sm:w-[15rem] sm:h-[2rem] sm:mt-4  
+                                md:text-[1.2rem]
+                                xl:w-[12rem]
+        
+                                    ">
+                        <input type="time" name="time-from" id="time_from" class="h-8 w-[9rem] my-4 rounded-md  p-[14px] translate-y-1 pt-4 text-gray-900  placeholder:text-gray-400 focus:ring-inset focus:ring-transparent focus:border-none border-none outline-none 
+                                    sm:w-[15rem] sm:h-[2rem] sm:mt-4 
+                                    md:text-[1.2rem] md:p-[1rem]    
+                                    xl:w-[12rem]
+                                    ">
+                        <br>
+
+
+
+
+                        <label for="date_until"
+                            class="absolute sm:translate-x-[25.5rem] text-[0.9rem] md:text-[1rem] md:translate-x-[32rem] lg:translate-x-[30rem] xl:translate-x-[40.5rem]">Until</label>
+                        <input type="date" name="date_until" id="date_until" class="h-8 w-[9rem] my-4 rounded-md p-[14px] translate-y-1 pt-4 text-gray-900   focus:ring-inset focus:ring-transparent focus:border-none  border-none outline-none
+                                    sm:w-[15rem] sm:h-[2rem] sm:mt-4 
+                                    md:text-[1.2rem]
+                                    xl:w-[12rem]
+                                    ">
+                        <input type="time" name="time_until" id="time_until" class="h-8 w-[9rem] my-4 rounded-md p-[14px] translate-y-1 pt-4 text-gray-900  focus:ring-inset focus:ring-transparent focus:border-none  border-none outline-none
+                                    sm:w-[15rem] sm:h-[2rem] sm:mt-4 
+                                    md:text-[1.2rem] md:p-[1rem]  
+                                    xl:w-[12rem]
+                                    ">
+                        <br>
+                        <hr>
+
+                        <div class="btt w-full text-center my-2 
+                                sm:w-14 sm:pl-4 ">
+                            <button type="submit" class="w-full h-10 text-6 text-white font-bold  bg-[#9960fc] 
+                                        hover:bg-transparent hover:border-solid hover:border-2 hover:border-[#9960fc] hover:text-[#9960fc] 
+                                        sm:w-10 sm:rounded-full
+                                        xl:mr-10 xl:translate-x-[2rem]
+                                        ">
+                                <span class="block sm:hidden  ">Search for cars</span>
+                                <span class="hidden sm:block sm:text-[1.3rem] sm:pt-1"><ion-icon name="search"
+                                        id="search"></ion-icon></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="hero ">
+                    <div class="hero-img relative">
+                        <img class="object-cover h-[76vh] w-full rounded-lg shadow overflow-hidden 
+                                sm:rounded-none sm:max-[760px] sm:w-[768px] sm:object-cover sm:h-[72vh]
+                                md:w-[1270px] md:h-[69vh]
+                                lg:max-w-[1500px] lg:h-[64vh] lg:relative lg:left-[-9rem]
+                                xl:relative xl:left-[0.1rem] xl:max-w-[1800px] xl:w-full xl:h-[70vh]
+                                 
+                                " src="{% static 'home-page/hero-sec/main-img.jpg' %}" alt="">
+                    </div>
+                    <div class="hero-txt w-full text-center mt-[-6px] ">
+                        <h1 class="text-[2.7rem] font-[650] sm:mt-2 google_font">Find your drive</h1>
+                        <p class="text-[1rem] font-semibold mt-3 ">Rent a car from reliable local hosts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12">
+
+        <!-- this is searching by brand name section -->
+
+        <section id="cars" class="brand  mb-10 overflow-hidden">
+            <div class="brand-txt mb-4">
+                <h2 class="text-[1.5rem] font-medium text-center mb-10">Search by Brand</h2>
+            </div>
+
+            <div class="brand-card w-ful xl:grid  xl:grid-flow-col ">
+
+                <section class="body">
+                    <div class="wrapper">
+
+
+                        <ul class="carousel ">
+                            <li class="drop-shadow-lg hover:text-[#9960fc] font-bold ">
+                                <div class="card  sm:w-[2rem] md:w-[7rem] h-[16rem] overflow-hidden img">
+                                    <img class="w-[14rem] h-[11rem] object-cover "
+                                        src="/static/home-page/brand/Ford.jpg" alt="">
+                                </div>
+                                <div class="card-txt translate-y-[-2rem] text-center w-[13rem]">
+                                    <h2>Ford</h2>
+                                </div>
+
+                            </li>
+                            <li class="drop-shadow-lg hover:text-[#9960fc] font-bold">
+                                <div class="card  sm:w-[2rem] md:w-[7rem] md:h-[16rem] overflow-hidden img">
+                                    <img class="w-[14rem] h-[11rem] object-cover" src="/static/home-page/brand/jeep.jpg"
+                                        alt="">
+                                </div>
+                                <div class="card-txt translate-y-[-2rem] text-center w-[13rem]">
+                                    <h2>Jeep</h2>
+                                </div>
+
+                            </li>
+                            <li class="drop-shadow-lg hover:text-[#9960fc] font-bold">
+                                <div class="card  sm:w-[2rem] md:w-[7rem] md:h-[16rem] overflow-hidden img">
+                                    <img class="w-[14rem] h-[11rem] object-cover"
+                                        src="/static/home-page/brand/Maruti-Suzuki.jpg" alt="">
+                                </div>
+                                <div class="card-txt translate-y-[-2rem] text-center w-[13rem]">
+                                    <h2>Maruti-Suzuki</h2>
+                                </div>
+
+                            </li>
+                            <li class="drop-shadow-lg hover:text-[#9960fc] font-bold">
+                                <div class="card  sm:w-[2rem] md:w-[7rem] md:h-[16rem] overflow-hidden img">
+                                    <img class="w-[14rem] h-[11rem] object-cover"
+                                        src="/static/home-page/brand/nissan.jpg" alt="">
+                                </div>
+                                <div class="card-txt translate-y-[-2rem] text-center w-[13rem]">
+                                    <h2>Nissan</h2>
+                                </div>
+
+                            </li>
+                            <li class="drop-shadow-lg hover:text-[#9960fc] font-bold">
+                                <div class="card  sm:w-[2rem] md:w-[7rem] md:h-[16rem] overflow-hidden img">
+                                    <img class="w-[14rem] h-[11rem] object-cover"
+                                        src="/static/home-page/brand/tata-motors.jpg" alt="">
+                                </div>
+                                <div class="card-txt translate-y-[-2rem] text-center w-[13rem]">
+                                    <h2>Tata</h2>
+                                </div>
+
+                            </li>
+                            <li class="drop-shadow-lg hover:text-[#9960fc] font-bold">
+                                <div class="card  sm:w-[2rem] md:w-[7rem] md:h-[16rem] overflow-hidden img">
+                                    <img class="w-[14rem] h-[11rem] object-cover"
+                                        src="/static/home-page/brand/toyota.jpg" alt="">
+                                </div>
+                                <div class="card-txt translate-y-[-2rem] text-center w-[13rem]">
+                                    <h2>Toyota</h2>
+                                </div>
+
+                            </li>
+
+                            <li class="drop-shadow-lg hover:text-[#9960fc] font-bold">
+                                <div class="card  sm:w-[2rem] md:w-[7rem] md:h-[16rem] overflow-hidden img">
+                                    <img class="w-[14rem] h-[11rem] object-cover"
+                                        src="/static/home-page/brand/Volkswagen.jpg" alt="">
+                                </div>
+                                <div class="card-txt translate-y-[-2rem] text-center w-[13rem]">
+                                    <h2>Volkswagen</h2>
+                                </div>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- this is call to action first section  -->
+
+        <section class="cta-one  mt-[4rem]">
+
+            <div class="cta-one-cards m-[3rem]">
+
+                <div class="cta-cards-row relative ">
+
+                    <!-- this card 1 -->
+
+                    <div class="cta-one-cardX  hidden  my-10 bg-white 
+                    lg:flex lg:justify-between lg:mx-auto lg:w-[1000px] lg:flex-row
+                    md:w-[750px] md:mx-auto 
+                    sm:flex sm:flex-col sm:justify-center sm:items-center sm:w-[640px] sm:mx-auto
+                    ">
+                        <div class="cta-one-card-img
+                        
+                        ">
+                            <img class=" lg:w-[20rem] lg:translate-x-[5rem] 
+                            sm:w-[22rem] translate-x-[1rem]" src="{% static 'home-page/cta/1-1.png' %}" alt="">
+                        </div>
+                        <div class="cta-one-card-txt 
+                        lg:flex lg:flex-col lg:justify-start lg:translate-x-[-4rem] 
+                        translate-x-[.5rem]  
+                        ">
+                            <h1 class="
+                            lg:text-[2rem] lg:font-semibold  lg:w-[30rem] lg:mt-4 lg:text-start
+                            sm:text-[1.7rem] sm:tracking-[-0.1rem] sm:text-center 
+                            text-xl
+                            ">Find the perfect car
+                                <span class="lg:tracking-[-.01rem]  text-[#9960fc]  "> to<br class="sm:hidden">
+                                    conquer the great outdoors</span>
+                            </h1>
+                            <p class="lg:w-[25rem] text-[#6d6c6c] lg:mt-[1.4rem] lg:text-base
+                            md:text-sm 
+                            sm:tracking-[-.01rem] sm:text-xs sm:mt-4
+                            ">Navigate winter roads effortlessly in a robust 4x4 or embark on a tree-filled journey in
+                                a camper van.</p>
+                            <div class="text-start sm:text-center  lg:text-start">
+                                <button
+                                    class="bg-[#9960fc]  text-white font-medium w-[7rem] h-[2rem] hover:border-[#9960fc] hover:text-[#9960fc] hover:border-2 hover:bg-white rounded-sm mt-4 mb-4 drop-shadow-2xl">
+                                    Browse cars</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- this card 2 -->
+
+                    <div class="cta-one-cardX    my-10 bg-white 
+                    lg:flex lg:mx-auto lg:w-[1000px] lg:flex-row-reverse
+                    md:w-[750px] md:mx-aut0
+                    sm:flex sm:flex-col sm:justify-center sm:items-center sm:w-[640px] sm:mx-auto">
+
+                        <div class="cta-one-card-img">
+                            <img class=" lg:w-[20rem] lg:translate-x-[5rem] 
+                            sm:w-[22rem] translate-x-[1rem]" src="{% static 'home-page/cta/1-2.png' %}" alt="">
+                        </div>
+                        <div class="cta-one-card-txt lg:flex lg:flex-col lg:justify-start  
+                          ">
+                            <h1 class=" lg:text-[2rem] lg:font-semibold  lg:w-[30rem] lg:mt-4 lg:text-start 
+                            sm:text-[1.7rem] sm:tracking-[-0.1rem] sm:text-center 
+                            text-xl">Find the perfect car <span class="lg:tracking-[-.01rem]  text-[#9960fc]  ">to <br
+                                        class="sm:hidden"> unwind for the weekend</span></h1>
+                            <p class="lg:w-[25rem] text-[#6d6c6c] lg:mt-[1.4rem] lg:text-base
+                            md:text-sm 
+                            sm:tracking-[-.01rem] sm:text-xs sm:mt-4">From daily drivers to spirited sports cars, ditch
+                                the grind with convenient nearby cars.</p>
+                            <div class="text-start sm:text-center lg:text-start">
+                                <button
+                                    class="bg-[#9960fc]  text-white font-medium w-[7rem] h-[2rem] hover:border-[#9960fc] hover:text-[#9960fc] hover:border-2 hover:bg-white rounded-sm mt-4 mb-4 drop-shadow-2xl ">Browse
+                                    cars</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- this card 3 -->
+
+                    <div class="cta-one-cardX  hidden   my-10 bg-white
+                                        lg:flex lg:justify-between lg:mx-auto lg:w-[1000px] lg:flex-row
+                                        md:w-[750px] md:mx-auto 
+                                        sm:flex sm:flex-col sm:justify-center sm:items-center sm:w-[640px] sm:mx-auto">
+
+                        <div class="cta-one-card-img">
+                            <img class=" lg:w-[20rem] lg:translate-x-[5rem] 
+                                                sm:w-[22rem] translate-x-[1rem]"
+                                src="{% static 'home-page/cta/1-3.png' %}" alt="">
+                        </div>
+                        <div class="cta-one-card-txt lg:flex lg:flex-col lg:justify-start lg:translate-x-[-4rem] 
+                                            translate-x-[.5rem]  ">
+                            <h1 class=" lg:text-[2rem] lg:font-semibold  lg:w-[30rem] lg:mt-4 lg:text-start 
+                                                sm:text-[1.7rem] sm:tracking-[-0.1rem] sm:text-center 
+                                                text-xl">Find the perfect car <span
+                                    class="lg:tracking-[-.01rem]  text-[#9960fc]  ">to <br class="sm:hidden">
+                                    upgrade
+                                    your vacation plans</span></h1>
+                            <p class="lg:w-[25rem] text-[#6d6c6c] lg:mt-[1.4rem] lg:text-base
+                                                md:text-sm 
+                                                sm:tracking-[-.01rem] sm:text-xs sm:mt-4">Skip the rental car counter
+                                and find the perfect car to complement your vacation vibe.</p>
+                            <div class="text-start sm:text-center lg:text-start">
+                                <button
+                                    class="bg-[#9960fc]  text-white font-medium w-[7rem] h-[2rem] hover:border-[#9960fc] hover:text-[#9960fc] hover:border-2 hover:bg-white rounded-sm mt-4 mb-4 drop-shadow-2xl ">Browse
+                                    cars</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </section>
+
+        <hr>
+
+        <!-- this is searching the car by destination section  -->
+
+        <section class="cta-destination ">
+            <div class="brand-txt font-medium mt-[4rem]">
+                <h2 class="text-[1.5rem] text-center mb-10">Search by destination</h2>
+            </div>
+            <div class="body ">
+                <div class="dest-cards wrapper h-[20rem]">
+                    <ul class="carousel h-[18rem] mt-4 ">
+
+                        <li class="drop-shadow-xl  rounded-lg mt-4 hover:text-[#9960fc]">
+                            <div class="card roud dest-card2 sm:w-[2rem] md:w-[7rem] md:h-[16rem]  ">
+                                <div class="dest-img text-center img"><img class="w-[14rem] rounded-xl object-cover"
+                                        src="{% static 'home-page/destination/Mumbai.png' %}" alt="">
+                                </div>
+                                <div class="dest-txt font-semibold card-txt text-center">Mumbai</div>
+                            </div>
+                        </li>
+                        <li class="drop-shadow-xl  rounded-lg mt-4 hover:text-[#9960fc]">
+                            <div class="card roud dest-card4 sm:w-[2rem] md:w-[7rem] md:h-[16rem]  ">
+                                <div class="dest-img text-center img"><img class="w-[14rem] rounded-xl object-cover"
+                                        src="{% static 'home-page/destination/Delhi.png' %}" alt="">
+                                </div>
+                                <div class="dest-txt font-semibold card-txt text-center">Delhi</div>
+                            </div>
+                        </li>
+                        <li class="drop-shadow-xl  rounded-lg mt-4 hover:text-[#9960fc]">
+                            <div class="card roud dest-card5 sm:w-[2rem] md:w-[7rem] md:h-[16rem]  ">
+                                <div class="dest-img text-center img"><img class="w-[14rem] rounded-xl object-cover"
+                                        src="{% static 'home-page/destination/Chennai.png' %}" alt="">
+                                </div>
+                                <div class="dest-txt font-semibold card-txt text-center">Chennai</div>
+                            </div>
+                        </li>
+                        <li class="drop-shadow-xl  rounded-lg mt-4 hover:text-[#9960fc]">
+                            <div class="card roud dest-card6 sm:w-[2rem] md:w-[7rem] md:h-[16rem]  ">
+                                <div class="dest-img text-center img"><img class="w-[14rem] rounded-xl object-cover"
+                                        src="{% static '/home-page/destination/Hyderabad.png' %}" alt="">
+                                </div>
+                                <div class="dest-txt font-semibold card-txt text-center">Hyderabad</div>
+                            </div>
+                        </li>
+                        <li class="drop-shadow-xl  rounded-lg mt-4 hover:text-[#9960fc]">
+                            <div class="card roud dest-card1 sm:w-[2rem] md:w-[7rem] md:h-[16rem]  ">
+                                <div class="dest-img text-center img"><img class="w-[14rem] rounded-xl object-cover"
+                                        src="{% static 'home-page/destination/Hyderabad.png' %}" alt="">
+                                </div>
+                                <div class="dest-txt font-semiboldcard-txt text-center">Bangalore</div>
+                            </div>
+                        </li>
+                    </ul>
+
+
+
+
+
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-10">
+
+        <!-- this the host section  -->
+
+        <section class="hosts my-16">
+            <div class="hosts-txt">
+                <h1 class="google_font text-center font-semibold text-[2rem] md:text-[2.5rem]">Meet the hosts</h1>
+            </div>
+            <div class="host-cards ">
+
+                <div class="host-1 sm:flex sm:flex-col  sm:w-[80vw] sm:mx-auto 
+                md:w-[65rem]  md:flex-row md:justify-between md:items-start 
+                xl:w-[70rem]
+                ">
+                    <div class="host-top w-full sm:mx-auto flex justify-evenly items-center bg-white drop-shadow-2xl my-4 h-[10rem] rounded-md 
+                        sm:w-[60vw]  md:w-[21rem]
+                        ">
+                        <div class="host-img"><img class="w-[6rem] h-[6rem] object-cover rounded-full 
+                            sm:w-[8rem] sm:h-[8rem]
+                            " src="{% static 'home-page/peoples/2.jpg' %}" alt="">
+                        </div>
+                        <div class="host-text">
+                            <div class="host-name h-[3rem] font-semibold text-[1.3rem] text-start">Natalia Z <br>
+                                <ion-icon name="star-sharp"></ion-icon><ion-icon name="star-sharp"></ion-icon><ion-icon
+                                    name="star-sharp"></ion-icon>
+                            </div>
+                            <div class="host-star font-medium text-[1rem] mt-2">
+
+                                All-Star host</div>
+                            <div class="joined">Joined Jul 2023 </div>
+                        </div>
+
+
+                    </div>
+                    <div class="host-top w-full sm:mx-auto flex justify-evenly items-center bg-white drop-shadow-2xl my-4 h-[10rem] rounded-md 
+                        sm:w-[60vw] md:w-[21rem]
+                        ">
+                        <div class="host-img"><img class="w-[6rem] h-[6rem] object-cover rounded-full 
+                            sm:w-[8rem] sm:h-[8rem]
+                            " src="{% static '/home-page/peoples/4.jpg' %}" alt="">
+                        </div>
+                        <div class="host-text">
+                            <div class="host-name h-[3rem] font-semibold text-[1.3rem] text-start">Natalia Z <br>
+                                <ion-icon name="star-sharp"></ion-icon><ion-icon name="star-sharp"></ion-icon><ion-icon
+                                    name="star-sharp"></ion-icon>
+                            </div>
+                            <div class="host-star font-medium text-[1rem] mt-2">
+
+                                All-Star host</div>
+                            <div class="joined">Joined Jul 2023 </div>
+                        </div>
+
+
+                    </div>
+                    <div class="host-top w-full sm:mx-auto flex justify-evenly items-center bg-white drop-shadow-2xl my-4 h-[10rem] rounded-md 
+                        sm:w-[60vw] md:w-[21rem]
+                        ">
+                        <div class="host-img"><img class="w-[6rem] h-[6rem] object-cover rounded-full 
+                            sm:w-[8rem] sm:h-[8rem]
+                            " src="{% static '/home-page/peoples/3.jpg' %}" alt="">
+                        </div>
+                        <div class="host-text">
+                            <div class="host-name h-[3rem] font-semibold text-[1.3rem] text-start">Natalia Z <br>
+                                <ion-icon name="star-sharp"></ion-icon><ion-icon name="star-sharp"></ion-icon><ion-icon
+                                    name="star-sharp"></ion-icon>
+                            </div>
+                            <div class="host-star font-medium text-[1rem] mt-2">
+
+                                All-Star host</div>
+                            <div class="joined">Joined Jul 2023 </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-10">
+
+        <!-- this is how SwiftRides works section -->
+
+        <section class="hsw-sec " id="hsw-sec">
+            <div class="hsw-sec-txt text-center my-20">
+                <h2 class="text-[1.89rem] font-semibold ">How ShiftRides works</h2>
+            </div>
+            <div class="hsw-cards 
+                            sm:flex sm:justify-evenly
+                            ">
+
+                <div class="hsw-card1">
+                    <div class="hsw-card-img mt-4 flex flex-row justify-center items-center ">
+                        <img class=" w-[7rem] h-[7rem] object-fill   rounded-full"
+                            src="{% static '/home-page/hsw/join.jpg' %}" alt="">
+                    </div>
+                    <div class="hsw-card-text w-full text-center mt-4 mb-10 flex flex-col ">
+                        <h3 class="text-[1.4rem] font-medium mb-2">Join in minutes</h3>
+                        <p class="sm:w-[13rem]  sm:mx-3 lg:w-[20rem]">Apply online with a valid driver's license. Most
+                            people are approved instantly and
+                            can book a
+                            trip within minutes</p>
+                    </div>
+                </div>
+
+                <div class="hsw-card2">
+                    <div class="hsw-card-img mt-4 flex flex-row justify-center items-center ">
+                        <img class=" w-[7rem] h-[7rem] object-cover   rounded-full"
+                            src="{% static '/home-page/hsw/drive.jpg' %}" alt="">
+                    </div>
+                    <div class="hsw-card-text w-full text-center mt-4 mb-10 flex flex-col ">
+                        <h3 class="text-[1.4rem] font-medium mb-2">Drive on demand</h3>
+                        <p class="sm:w-[13rem]  sm:mx-3 lg:w-[20rem]">Book a round trip car by the hour or day. Use our
+                            car sharing app to unlock and
+                            lock during
+                            your trip.</p>
+                    </div>
+                </div>
+
+                <div class="hsw-card3">
+                    <div class="hsw-card-img mt-4 flex flex-row justify-center items-center ">
+                        <img class=" w-[7rem] h-[7rem] object-cover   rounded-full"
+                            src="{% static '/home-page/hsw/return.jpg' %}" alt="">
+                    </div>
+                    <div class="hsw-card-text w-full text-center mt-4 mb-10 flex flex-col ">
+                        <h3 class="text-[1.4rem] font-medium mb-2">Return</h3>
+                        <p class="sm:w-[13rem]  sm:mx-3 lg:w-[20rem]">When you're done, park the car in the same
+                            location you picked it up from, then end
+                            the trip
+                            with the app.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hsw-btt  items-center sm:w-0 sm:mx-auto sm:translate-x-[-6rem]">
+                <button class="w-full h-10 text-6 rounded-full text-white font-bold  bg-[#9960fc] hover:border-[#9960fc] hover:text-[#9960fc] hover:border-2 hover:bg-white   
+                sm:w-[13rem] drop-shadow-2xl">View Pricing</button>
+            </div>
+        </section>
+
+        <hr class="my-10">
+
+        <!-- <section class="ecperiences-cars">
+            <div class="brow-experience">
+                <div class="brw-exp-card1">
+                    <div class="exp-img"><img src="static/home-page\experience\Electric.jpg" alt=""></div>
+                    <div class="exp-txt">Electric</div>
+                </div>
+                <div class="brw-exp-card2">
+                    <div class="exp-img"><img src="static/home-page\experience\Deluxe&SuperDeluxe.jpg" alt="">
+                    </div>
+                    <div class="exp-txt">Deluxe & Super Deluxe</div>
+                </div>
+                <div class="brw-exp-card3">
+                    <div class="exp-img"><img src="static/home-page\experience\Pet-friendly.jpg" alt=""></div>
+                    <div class="exp-txt">Pet-friendly</div>
+                </div>
+                <div class="brw-exp-card4">
+                    <div class="exp-img"><img src="static/home-page\experience\convertibles.jpg" alt=""></div>
+                    <div class="exp-txt">Convertibles</div>
+                </div>
+                <div class="brw-exp-card5">
+                    <div class="exp-img"><img src="static/home-page\experience\allwheeldrive.jpg" alt=""></div>
+                    <div class="exp-txt">All-wheel drive</div>
+                </div>
+            </div>
+
+        </section> 
+
+        <hr> -->
+
+
+        <section class="ask-que ">
+            <div class="google_font text-[1.7rem] font-semibold text-center sm:text-[2rem] md:mb-[3rem]">Frequently
+                Asked Questions </div>
+            <div class="questions sm:w-[90vw] m-auto md:flex md:flex-wrap justify-center items-center">
+
+                <hr class="my-6 sm:block md:hidden">
+
+                <details class="md:w-[40vw] mx-auto md:my-4">
+                    <summary class="text-[1.2rem]">What ShiftRides try to solve </summary>
+                    <div class="text-left font-light text-[#585454]"> ShiftRides aims to simplify car renting in India,
+                        offering a diverse fleet for various
+                        destinations. With transparent
+                        pricing and flexible rental periods, users can book cars seamlessly through a secure online
+                        platform. Responsive
+                        customer support, user reviews, and mobile accessibility enhance the overall experience,
+                        creating a trustworthy and
+                        convenient car rental service.</div>
+                </details>
+
+                <hr class="my-6 sm:block md:hidden">
+
+                <details class="md:w-[40vw] mx-auto md:my-4">
+                    <summary class="text-[1.2rem]">What do I need to book a car on ShiftRides?</summary>
+                    <div class="text-left font-light text-[#585454]">
+                        To book a car on ShiftRides, you need to create a ShiftRides account, be 18 years old or older
+                        in the US, 21 years old
+                        or older in the UK, 23 years old or older in Canada, and have a valid driver’s license. In
+                        France, you must be 18 years
+                        old or older and have held a driver’s license for at least 2 years. During your initial booking,
+                        you'll undergo a quick
+                        approval process by submitting your driver’s license and other details. In most cases, you'll
+                        receive immediate
+                        approval, allowing you to enjoy seamless road trips with ShiftRides.
+                    </div>
+                </details>
+
+                <hr class="my-6 sm:block md:hidden">
+
+                <details class="md:w-[40vw] mx-auto md:my-4">
+                    <summary class="text-[1.2rem]">Do I need my own insurance?</summary>
+                    <div class="text-left font-light text-[#585454]">
+                        No, you don’t need personal insurance coverage to book a car on Turo.
+
+                        In the US, any personal insurance you may have that covers damage to the host’s vehicle would
+                        kick in before your Turo
+                        protection plan, except in limited situations for trips booked in Maryland. When booking a car
+                        in the US, you’ll choose
+                        between three protection plans — Premier, Standard, or Minimum — to get the level of protection
+                        that’s right for you. On
+                        each trip, you’re covered with third-party automobile liability insurance provided under a
+                        policy issued to Turo by
+                        Travelers Excess and Surplus Lines Company.*
+
+                        In New York state, you’ll also choose between Premier, Standard, or Minimum. With each plan,
+                        you’re covered with
+                        liability insurance of $1,250,000.* Protection plans for New York trips also include access to
+                        roadside assistance,
+                        priority phone support, and 24/7 customer assistance.
+
+                        When booking a car in Canada, you’ll choose between three protection plans — Premier, Standard,
+                        or Minimum — and with
+                        each plan, you’re covered with liability insurance purchased from Intact Financial Corporation
+                        in Alberta, Nova Scotia,
+                        Ontario, and Quebec, and Insurance Corporation of British Columbia (ICBC) in British Columbia —
+                        up to $2,000,000 for all
+                        plans.**
+
+                        When booking a car in the United Kingdom, you’ll also choose between the Premier, Standard, and
+                        Minimum protection
+                        plans. Each plan includes different limits of financial responsibility for physical damage, but
+                        all three plans include
+                        up to £20,000,000 coverage under a third-party automobile liability insurance policy provided by
+                        Aioi Nissay Dowa
+                        Insurance UK Ltd. via Turo broker Aon UK Ltd.**
+
+                        When booking a car in Australia, you’ll choose between the Premier (if available), Standard, and
+                        Minimum protection
+                        plans. Each plan includes varying limits on financial responsibility for damage to a host’s
+                        vehicle. All trips include
+                        $20,000,000 in legal liability protection for damage to other people’s property. All protection
+                        is provided by Turo
+                        Travels Mutual.***
+                    </div>
+                </details>
+
+                <hr class="my-6 sm:block md:hidden">
+
+
+
+                <details class="md:w-[40vw] mx-auto md:my-4">
+                    <summary class="text-[1.2rem]">Can other people drive a car that I booked?</summary>
+                    <div class="text-left font-light text-[#585454]">
+                        Yes, multiple guests can drive the car you book on Turo, as long as they are all approved to
+                        drive. The primary driver
+                        (whoever booked the car) can add additional drivers with no fees or additional charges. Only the
+                        primary driver can
+                        request to add drivers; Turo hosts cannot do it for you. We encourage you to request to add
+                        additional drivers before
+                        your trip starts, though guests in the US and Canada can request to add a driver while a trip is
+                        in progress.
+
+                        To speed up the process, have your additional driver create a Turo account and get approved to
+                        drive before you request
+                        to add them. All drivers must have a valid driver’s license and meet the age requirements for
+                        the car you’ve booked. You
+                        can request to add drivers via the “Trips” tab in the Turo app without additional driver charges
+                        or extra costs.
+                    </div>
+                </details>
+
+                <hr class="my-6 sm:block md:hidden">
+
+                <details class="md:w-[40vw] mx-auto md:my-4">
+                    <summary class="text-[1.2rem]">What happens if I have an accident?</summary>
+                    <div class="text-left font-light text-[#585454]">
+                        If there’s an emergency or an issue with the car, call our emergency roadside assistance
+                        provider, available 24/7. We’ll
+                        make sure you’re safe, then help you get back on your way.
+                    </div>
+                </details>
+
+                <hr class="my-6 sm:block md:hidden">
+
+                <details class="md:w-[40vw] mx-auto md:my-4">
+                    <summary class="text-[1.2rem]">Can I get my car delivered to me?</summary>
+                    <div class="text-left font-light text-[#585454]">
+                        Yes, many hosts offer delivery to travel hubs like airports, train stations, and hotels, or to
+                        custom delivery
+                        locations. There are cars available on Turo at convenient locations near hundreds of airports.
+                        Skip the rental counter
+                        and have your car delivered for pickup and return at your hotel or vacation rental, or nearby
+                        location, to save time and
+                        hassle on your weekend getaway or family vacation. Some hosts offer free delivery, while others
+                        set their own delivery
+                        fee.
+                    </div>
+                </details>
+
+                <hr class="my-6 sm:block md:hidden">
+
+
+            </div>
+
+
+
+        </section>
+
+
+    </main>
+
+
+{% endblock %}
+

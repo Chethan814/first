@@ -1,0 +1,160 @@
+body {
+    font-family: "Geologica", sans-serif;
+}
+
+.google_font {
+    font-family: "Playfair Display", serif;
+}
+
+
+
+.main-heading {
+    font-family: "Playfair Display", serif;
+}
+
+img {
+    width: 300px;
+}
+
+.body {
+    display: flex;
+    padding: 15px 64px;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.wrapper {
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+}
+
+
+
+
+
+.wrapper .carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 4) - 10px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    border-radius: 8px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel.no-transition {
+    scroll-behavior: auto;
+}
+
+.carousel.dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+.carousel.dragging .card {
+    cursor: grab;
+    user-select: none;
+}
+
+/* .carousel :where(.card, .img) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } */
+
+.carousel .card {
+    scroll-snap-align: start;
+    height: 220px;
+    width: 220px;
+    list-style: none;
+    background: #fff;
+
+    cursor: pointer;
+    padding-bottom: 15px;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 3%);
+}
+
+/* .carousel .card .img {
+            background: #8B53FF;
+            height: 148px;
+            width: 148px;
+            border-radius: 50%;
+        } */
+
+.card .img img {
+    width: 15rem;
+    height: 12rem;
+    /* border-radius: 50%; */
+    object-fit: cover;
+    border: 4px solid #fff;
+}
+
+.carousel .card h2 {
+    font-weight: 500;
+    font-size: 1.56rem;
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+@media screen and (max-width: 1270px) {
+
+    .body {
+        padding: 15px 15px;
+    }
+
+}
+
+
+
+@media screen and (max-width: 1010px) {
+    .wrapper .carousel {
+        grid-auto-columns: calc((100% / 3) - 12px);
+    }
+
+    .body {
+        padding: 15px 3rem;
+    }
+
+}
+
+@media screen and (max-width: 760px) {
+    .wrapper .carousel {
+        grid-auto-columns: calc((100% / 2) - 10px);
+    }
+
+    .body {
+        padding: 16px 7rem;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .wrapper .carousel {
+        grid-auto-columns: calc((100% / 1) - -10px);
+    }
+
+    .body {
+        padding: 16px 3.5rem;
+    }
+
+    .wrapper {
+        max-width: 50rem;
+        width: 100%;
+        position: relative;
+    }
+
+    .wrapper .carousel {
+        gap: 172px;
+    }
+}

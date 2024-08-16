@@ -1,0 +1,129 @@
+{% extends 'pages/basic.html' %} 
+{% load static tailwind_tags %}
+{% load static %} 
+
+{% block title %} SwiftRides {% endblock %} 
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'slider\slider.css' %}" />
+<script src="{% static 'slider\slider.js'  %}"></script>
+<link rel="stylesheet" href="{% static 'home-page/style/style.css' %}" />
+<script src="{% static 'home-page\script_for_home\home.js' %}"></script>
+
+{% endblock %} {% block main %}
+
+<main class="sm:w-[90vw] mx-auto md:w-[85vw] lg:w-[80vw]">
+    <div
+        class="relative h-[15rem] rounded-md sm:h-[21rem] md:h-[21rem] md:max-w-[40rem] md:mx-auto object-cover"
+    >
+        <div
+            class="w-full absolute top-[5rem] z-10 flex justify-between px-3 sm:top-[8rem] md:top-[10rem]"
+        >
+            <button
+                id="prevBtn"
+                class="bg-black/25 text-white w-8 h-8 rounded-full"
+            >
+                <i class="fa-solid fa-arrow-left hover:bg-opacity-100"></i>
+            </button>
+            <button
+                id="nextBtn"
+                class="bg-black/25 text-white w-8 h-8 rounded-full"
+            >
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+        <div
+            class="sliders h-[15rem] m-auto mt-5 rounded-md sm:h-[20rem] sm:translate-y-2 md:h-[25rem] md:w-[39rem] lg:h-[26rem]"
+        >
+            <div class="slide">
+                <img
+                    src="{{car.car_image_primary.url}}"
+                    alt=""
+                    class="h-full w-full max-w-[70rem] object-cover sm:rounded-md md:h-[20rem]"
+                />
+            </div>
+            <div class="slide">
+                <img
+                    src="{{car.car_image_secondary1.url}}"
+                    alt=""
+                    class="h-full w-full max-w-[70rem] object-cover sm:rounded-md md:h-[20rem]"
+                />
+            </div>
+            <div class="slide">
+                <img
+                    src="{{car.car_image_secondary2.url}}"
+                    alt=""
+                    class="h-full w-full max-w-[70rem] object-cover sm:rounded-md md:h-[20rem]"
+                />
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="mx-auto w-[21.5rem] sm:w-[90vw] md:w-[40rem] lg:max-w-[76vw] lg:flex lg:justify-center"
+    >
+        <div class="lg:max-w-[70rem]">
+            <div class="font-medium text-[1.5rem] mt-4">
+                {{ car.make }} {{ car.model }}
+            </div>
+            <div>
+                <span>Year: {{ car.year }} </span> <br />
+                <span>Color: {{ car.color }} </span> <br />
+                <span>mileage: {{ car.mileage }} </span> <br />
+                <span>Loction : 
+                    {% for location in car.locations.all %} {{ location.city }},
+                    {% endfor %}
+                </span>
+                <br />
+                <span> Available: {{ car.available }} </span> <br />
+            </div>
+
+            <hr class="my-2 lg:hidden" />
+
+            <div class="lg:w-[24rem] lg:h-[9.61rem] lg:overflow-hidden">
+                <span class="text-[1.4rem] font-medium">Description</span>
+                <br />
+                <p class="text-ellipsis overflow-hidden">
+                    {{ car.description }}
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="w-[21.8rem] h-[5rem] shadow-xl bg-white mb-4 fixed bottom-0 rounded-md sm:w-[90vw] md:w-[38rem] lg:relative lg:bg-inherit lg:shadow-none"
+        >
+            <div
+                class="flex justify-around items-center mt-4 lg:flex lg:flex-col"
+            >
+                <div>
+                    <div>
+                        <span
+                            class="text-[0.8rem] line-through text-[#5e5e5e] lg:text-[1rem] lg:mt-4"
+                        >
+                            ₹{% if car.price_per_day <= 5000 %}5000 {% else
+                            %}10000 {% endif %}</span
+                        >
+                        <span class="ml-2 font-semibold lg:text-[1.5rem]"
+                            >₹{{ car.price_per_day }}/Day</span
+                        >
+                    </div>
+                    <div
+                        class="text-[0.8rem] text-[#5e5e5e] underline lg:mt-3 lg:text-[1rem]"
+                    >
+                        ₹499 excl. taxes & fess
+                    </div>
+                </div>
+
+                <div class="lg:mt-8">
+                    <button
+                        class="w-[7rem] h-[3rem] text-6 rounded-md text-white font-bold bg-[#9960fc] hover:border-[#9960fc] hover:text-[#9960fc] hover:border-2 hover:bg-white sm:w-[13rem] drop-shadow-2xl lg:text-[1.4rem]"
+                    >
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

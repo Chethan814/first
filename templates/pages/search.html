@@ -1,0 +1,97 @@
+{% extends 'pages/basic.html' %}
+{% load static tailwind_tags %}
+{% load static %}
+
+{% block title %} SwiftRides {% endblock %}
+{% block link %}
+
+{% endblock %}
+
+{% block main %}
+<main class="mt-[1rem] min-h-[100vh] mx-auto ">
+
+    <section class="search  mx-auto my-10 " >
+        <form method="GET" class=" 
+        w-[90vw] max-w-[22rem] h-[20rem] bg-[#f9f8f8]  mx-auto flex flex-col justify-center items-center rounded-md 
+        sm:w-[70vw] sm:max-w-none 
+        md:w-[90vw] md:h-[10rem] md:mx-auto md:px-4 md:rounded-xl md:flex md:flex-row md:justify-center md:items-center  md:bg-[#f9f8f8] 
+         
+        " id="serarch_myForm">
+            {% csrf_token %}
+            <div class="card 
+            w-[80vw] max-w-[20rem] h-[4rem] my-4 rounded-xl relative flex bg-white drop-shadow-md  
+            sm:w-[25rem] sm:max-w-none  sm:h-[13vh] 
+            md:w-[20rem] md:h-[4.5rem] md:mx-3 md:translate-y-[-0.5rem] md:rounded-md  
+            ">
+                <label for="where" class="absolute left-3 top-1 text-[#7f7f7f] ">where</label>
+                <input type="search"
+                    class="w-full rounded-md border-0 pt-4  text-gray-900 focus:ring-2 focus:ring-inset focus:ring-transparent focus:border-none placeholder:text-black"
+                    name="search" id="search" placeholder="City or address"
+                    value="{% if query %}{{ query }}{% elif destination %}{{ destination }}{% endif %}">
+            </div>
+
+            <div class="card 
+             w-[80vw] max-w-[20rem] h-[4rem] mb-4 rounded-xl relative flex bg-white drop-shadow-md  
+            sm:w-[25rem] sm:max-w-none  sm:h-[13vh]  
+            md:w-[20rem] md:h-[4.5rem] md:mx-3  md:rounded-md  ">
+                <label for="from" class="absolute left-3   text-[#7f7f7f] md:top-1">Form</label>
+                <input type="date" class="h-8 w-[10rem] my-4 rounded-md  pt-4 text-gray-900  placeholder:text-gray-400 focus:ring-inset focus:ring-transparent focus:border-none 
+                                                                   border-none outline-none  " name="start_date"
+                    id="from" value="{{ request.GET.start_date }}">
+            </div>
+
+            <div class="card 
+             w-[80vw] max-w-[20rem] h-[4rem] mb-4 rounded-xl relative flex bg-white drop-shadow-md  
+            sm:w-[25rem] sm:max-w-none  sm:h-[13vh] 
+            md:w-[20rem] md:h-[4.5rem] md:mx-3 md:rounded-md   ">
+                <label for="until" class="absolute left-3   text-[#7f7f7f] md:top-1">Until</label>
+                <input type="date" class="h-8 w-[10rem] my-4 rounded-md  pt-4 text-gray-900  placeholder:text-gray-400 focus:ring-inset focus:ring-transparent focus:border-none 
+                                                                   border-none outline-none  " name="end_date"
+                    id="until_date" value="{{ request.GET.end_date }}">
+            </div>
+
+            <div class="btt card w-[15rem] h-[10vh] rounded-xl relative flex justify-center items-center  drop-shadow-xl 
+                
+                ">
+                <button type="submit" class=" w-[5rem]  h-[2rem] rounded-md font-semibold text-white bg-[#9960fc] hover:border-[2px] hover:border-[#9960fc] hover:text-[#9960fc] hover:bg-white 
+                    sm:w-[10rem] sm:h-[3rem] sm:mb-4 ">Search</button>
+            </div>
+        </form>
+    </section>
+
+    <section
+        class=" mx-auto mt-5  flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:justify-start lg:w-[57rem] lg:mx-auto xl:w-[65rem]">
+        {% for car in results %}
+        <a href="{% url 'car_details' car.id %}">
+            <div class=" w-80 h-96 my-5 flex flex-col justify-center items-center bg-white drop-shadow-xl rounded-md transition-all hover:scale-105 
+        sm:w-[70vw] sm:h-[28rem] sm:items-center 
+        md:w-[36rem] md:h-[34rem] 
+        lg:w-[27rem] lg:h-[29rem] lg:mx-3 lg:justify-center lg:my-3 
+        xl:w-[30rem] xl:h-[28rem] xl:mx-5 
+         ">
+                <img src="{{ car.car_image_primary.url }}" alt="{{ car.make }} {{ car.model }}" class="object-cover  rounded-md mt-5 h-[20rem] w-[19rem] drop-shadow-sm 
+            sm:w-[30rem] sm:h-[20rem] 
+            md:w-[33rem] md:h-[25rem]   
+            lg:w-[24rem] lg:h-[18rem] lg:mt-0
+            xl:w-[27rem] 
+            ">
+
+                <div class="w-[18rem] my-2 sm:self-start ml-6 lg:w-[25rem] ">
+
+                    <span class="">{{ car.make }} {{ car.model }}</span> <br>
+                    <span class="">Year: {{ car.year }}</span> <br>
+                    <span class="">Color: {{ car.color }}</span> <br>
+
+                    <span class="card-text">Locations:
+                        {% for location in car.locations.all %}
+                        {{ location.city }},
+                        {% endfor %}
+                    </span> <br>
+                </div>
+            </div>
+            {% endfor %}
+        </a>
+    </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+
+    <!-- the linked in external css and script in static -->
+
+    {% block links %}
+    <link rel="stylesheet" href="{% static 'home-page/style/style.css' %}">
+    <script src="{% static 'home-page\script_for_home\home.js' %}"></script>
+    <script src="{% static 'home-page\script_for_home\app.js' %}"></script>
+    <link rel="shortcut icon" href="{% static 'logos\swift rides.png' %}" >
+    {% endblock %}
+    
+    <!-- the external links for font , icon ,  -->
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5d4cb69663.js" crossorigin="anonymous"></script>
+
+
+
+
+    {% tailwind_css %}
+</head>
+<body
+    class="max-w-[350px] m-auto | sm:bg-red-00 sm:max-w-[750px] | md:bg-blue-00 md:max-w-[1010px] | lg:bg-green-00 lg:max-w[1270px] | xl:bg-purple-00 xl:max-w-[1530px] | 2xl:bg-white overflow-x-hidden ">
+    {% include 'includes/navbar.html' %}
+
+    {% block main %}
+
+    {% endblock %}
+
+    {% include 'includes/footer.html' %}
+
+
+</body>
+</html>

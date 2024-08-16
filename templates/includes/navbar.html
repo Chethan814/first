@@ -1,0 +1,63 @@
+{% extends 'includes/include_base.html' %}
+{% load static tailwind_tags %}
+{% load static %}
+
+
+{% block links %}
+
+
+
+{% tailwind_css %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<nav class=" sm:flex sm:justify-center sm:items-center ">
+    <div class="top-nav w-full flex justify-between items-start  ">
+        <div class="logo ">
+            <a href="{% url 'home' %}"><img class="w-[4rem] my-2 sm:ml-[2rem] md:w-[5rem]  xl:w-[4.5rem] "
+                src="{% static 'logos\mainLogo.jpg' %}" alt=""></a></div>
+        <div class="menu-i text-[2rem] relative top-[0.5rem] mr-4 sm:hidden ">
+            <ion-icon name="menu" id="menu"></ion-icon>
+        </div>
+    </div>
+    <div class="nav-btt   ">
+        <div class="nav-list">
+            <div class="hidden sm:block ">
+
+
+                <ul class="text-[1.11rem] bg-white  text-[#1c1b1b]  absolute left-0 top-[4rem] h-[100vh] w-full z-50  || 
+                                sm:relative sm:left-0 sm:top-0 sm:bg-transparent sm:text-[0.8rem] sm:h-full sm:w-[30rem] sm:gap-[1rem] sm:flex sm:justify-between 
+                                sm:translate-x-0 
+                                md:relative md:left-0 md:w-[50rem] md:text-[1rem] md:justify-end 
+                                ">
+
+                    <hr class="my-4">
+                    <li class=" py-3 ml-4  hover:text-[#9960fc] "><a href="{% url 'home' %}">Home</a></li>
+                    <li class=" py-3 ml-4  hover:text-[#9960fc] "><a href="{% url 'search' %}">Search</a></li>
+                    <hr class="my-4 sm:hidden">
+                    <li class=" py-3 ml-4  hover:text-[#9960fc] ">Become a host</li>
+
+                    <!-- error in login and sign up, when i use url 'Login'  and  url 'Signup'  -->
+
+                    <li class=" py-3 ml-4  hover:text-[#9960fc] "><a href="{% url 'login' %}">Log in</a></li>
+                    <li class=" py-3 ml-4  sm:mr-[3rem] sm:ml-0 hover:text-[#9960fc] "><a href="{% url 'signup' %}">Sign
+                            up</a></li>
+                    <hr class="my-4 sm:hidden">
+                    <li class=" py-3 ml-4  hover:text-[#9960fc] sm:hidden"><a href="#footer">FAQ</a></li>
+                    <li class=" py-3 ml-4  hover:text-[#9960fc] sm:hidden"><a href="#footer">Terms of
+                            Services</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</nav>
+<hr>
+
+{% endblock %}
